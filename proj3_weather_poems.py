@@ -33,3 +33,24 @@ def get_weather(city):
 # TESTING IF THE API WORKS
 city = input('Enter a City:')
 print(get_weather(city))
+
+
+def generate_creative_text(city, writing_stype):
+
+	weather_summary = get_weather(city)
+
+	prompt = 'Write a {writing_style} inspired by this weather description: {weather_summary}. Do not mention the city itself, it should only be based on the weather.'
+
+	result = subprocess.run(
+
+		['ollama', 'run', 'tinyllama'],
+		input = prompt.encode(),
+		capture_output = True
+
+		)
+
+	return result.stdout.decode().strip()
+
+
+# TESTING IF AI PROMPT WORKS
+# print(generate_creative_text(city,'very short poem'))
