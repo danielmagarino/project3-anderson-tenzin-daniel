@@ -54,3 +54,31 @@ def generate_creative_text(city, writing_stype):
 
 # TESTING IF AI PROMPT WORKS
 # print(generate_creative_text(city,'very short poem'))
+with gr.Blocks() as demo:
+	gr.Markdown("Weather Mood Writer")
+	gr.Markdown("Type in a city and select a writing style. This AI with write creative text based on current weather conditions!")
+
+	city_input = gr.Textbox(label="Enter a City", placeholder="Ex) New York City")
+
+	style_dropdown = gr.Dropdown(
+
+		choices = ["Poem", "Short Story", "Journal Entry"],
+		label = "Choose a Writing Style"
+
+	)
+
+	output_box = gr.Textbox(label="Prompt Output")
+	generate_button = gr.Button("Generate")
+
+	generate_button.click(
+
+		fn = generate_creative_text,
+		inputs = [city_input, style_dropdown],
+		outputs = output_box
+
+		)
+
+
+# RUNNING THE WHOLE PROGRAM
+if __name__ == "__main__":
+	demo.launch(share=True)
