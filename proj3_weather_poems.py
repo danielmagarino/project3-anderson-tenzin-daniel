@@ -1,9 +1,14 @@
 import requests
 import gradio as gr
 import subprocess
+from dotenv import load_dotenv
+import os
 
+API_KEY = os.getenv("api_key") # Enter API Key Here
 
-API_KEY = "" # Enter API Key Here
+if not API_KEY:
+	print("Error: API_KEY not found")
+	print("Please make a .env file with the api key given to you")
 
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -28,11 +33,6 @@ def get_weather(city):
 
 	else:
 		return f"Error Code {response.status_code}. Couldn't retrieve the data."
-
-
-# TESTING IF THE API WORKS
-city = input('Enter a City:')
-print(get_weather(city))
 
 
 def generate_creative_text(city, writing_stype):
