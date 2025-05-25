@@ -3,7 +3,8 @@ import gradio as gr
 import subprocess
 from dotenv import load_dotenv
 import os
-
+#load environment variables
+load_dotenv()
 API_KEY = os.getenv("api_key") # Enter API Key Here
 
 if not API_KEY:
