@@ -36,7 +36,7 @@ def get_weather(city):
 		return f"Error Code {response.status_code}. Couldn't retrieve the data."
 
 
-def generate_creative_text(city, writing_stype):
+def generate_creative_text(city, writing_style):
 
 	weather_summary = get_weather(city)
 
