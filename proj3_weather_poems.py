@@ -30,7 +30,7 @@ def get_weather(city):
 		temp = data['main']['temp']
 		location = data['name']
 
-		return f'The weather in {location} is {weather_description} with a temperature of {temp} degrees farenheight'
+		return f'The weather in {location} is {weather_description} with a temperature of {temp} degrees fahrenheit'
 
 	else:
 		return f"Error Code {response.status_code}. Couldn't retrieve the data."
@@ -40,7 +40,7 @@ def generate_creative_text(city, writing_style):
 
 	weather_summary = get_weather(city)
 
-	prompt = 'Write a {writing_style} inspired by this weather description: {weather_summary}. Do not mention the city itself, it should only be based on the weather.'
+	prompt = f'Write a {writing_style} inspired by this weather description: {weather_summary}. Do not mention the city itself, it should only be based on the weather.'
 
 	result = subprocess.run(
 
@@ -57,7 +57,7 @@ def generate_creative_text(city, writing_style):
 # print(generate_creative_text(city,'very short poem'))
 with gr.Blocks() as demo:
 	gr.Markdown("Weather Mood Writer")
-	gr.Markdown("Type in a city and select a writing style. This AI with write creative text based on current weather conditions!")
+	gr.Markdown("Type in a city and select a writing style. This AI will write creative text based on current weather conditions!")
 
 	city_input = gr.Textbox(label="Enter a City", placeholder="Ex) New York City")
 
